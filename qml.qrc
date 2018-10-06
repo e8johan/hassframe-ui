@@ -7,5 +7,7 @@
         <file>images/fonsterlampa-on.png</file>
         <file>images/rislampa-off.png</file>
         <file>images/rislampa-on.png</file>
+        <file>images/disco-on.png</file>
+        <file>images/disco-off.png</file>
     </qresource>
 </RCC>
