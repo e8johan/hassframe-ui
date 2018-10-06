@@ -367,4 +367,10 @@ Window {
     }
 
     Component.onCompleted: root.showFullScreen()
+
+    MouseArea {
+        anchors.fill: parent
+        enabled: false
+        cursorShape: Qt.BlankCursor
+    }
 }
