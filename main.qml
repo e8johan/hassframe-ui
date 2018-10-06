@@ -279,19 +279,90 @@ Window {
             bottomPadding: 40
 
             Repeater {
-                model: 8
                 delegate:
                 Rectangle {
-                    color: "white"
-
                     width: height
                     height: 150
+
+                    color: type === "disabled"?"#333333":"white"
+
+                    Image {
+                        anchors.centerIn: parent
+                        visible: type != "disabled"
+                        source: name + "png"
+                    }
+
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: hideTimer.restart();
+                        onClicked: {
+                            hideTimer.restart();
+
+                            if (type === "request") {
+                                var url = 'http://192.168.1.202:8123/api/services/' + service
+                                var params = '{"entity_id": "' + entity + '"}'
+                                var http = new XMLHttpRequest();
+
+                                http.open('POST', url, true);
+                                http.setRequestHeader('Content-Type', 'application/json');
+                                http.send(params);
+                            }
+                        }
+                    }
+                }
+
+                model: ListModel {
+                    ListElement {
+                        name: "fonsterlampor-on"
+                        type: "request"
+                        entity: "switch.fonsterlampor_vardagsrum"
+                        service: "switch/turn_on"
+                    }
+
+                    ListElement {
+                        name: "rislampan-on"
+                        type: "request"
+                        entity: "switch.rislampan"
+                        service: "switch/turn_on"
+                    }
+
+                    ListElement {
+                        name: "disco-on"
+                        type: "request"
+                        entity: "switch.fonsterlampor_koket"
+                        service: "switch/turn_on"
+                    }
+
+                    ListElement {
+                        type: "disabled"
+                    }
+
+                    ListElement {
+                        name: "fonsterlampor-off"
+                        type: "request"
+                        entity: "switch.fonsterlampor_vardagsrum"
+                        service: "switch/turn_off"
+                    }
+
+                    ListElement {
+                        name: "rislampan-off"
+                        type: "request"
+                        entity: "switch.rislampan"
+                        service: "switch/turn_off"
+                    }
+
+                    ListElement {
+                        name: "disco-off"
+                        type: "request"
+                        entity: "switch.fonsterlampor_koket"
+                        service: "switch/turn_off"
+                    }
+
+                    ListElement {
+                        type: "disabled"
                     }
                 }
             }
+
         }
     }
 
