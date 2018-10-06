@@ -1,11 +1,10 @@
-import QtQuick 2.11
-import QtQuick.Window 2.11
+import QtQuick 2.7
+import QtQuick.Window 2.0
 import Qt.labs.folderlistmodel 2.2
 
 Window {
     id: root
 
-    visible: true
     width: 800
     height: 480
     title: qsTr("Hello World")
@@ -95,7 +94,7 @@ Window {
                 return imagesModel.get(nextIndex, "fileURL");
             }
 
-            nameFilters: [ "IMG_*.jpg" ]
+            nameFilters: [ "*.jpg" ]
             folder: "file:///home/pi/Pictures"
         }
 
@@ -129,8 +128,46 @@ Window {
                 repeat: true
                 running: true
                 onTriggered: {
-                    // Update clock and date and stuff here
+                    var date = new Date;
 
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var seconds = date.getSeconds();
+
+                    var year = date.getFullYear();
+                    var month = date.getMonth();
+                    var day = date.getDate();
+                    var dayOfWeek = date.getDay();
+
+                    var dayOfWeekName = "Okänd dag"
+
+                    switch(dayOfWeek)
+                    {
+                    case 0:
+                        dayOfWeekName = "Söndag";
+                        break;
+                    case 1:
+                        dayOfWeekName = "Måndag";
+                        break;
+                    case 2:
+                        dayOfWeekName = "Tisdag";
+                        break;
+                    case 3:
+                        dayOfWeekName = "Onsdag";
+                        break;
+                    case 4:
+                        dayOfWeekName = "Torsdag";
+                        break;
+                    case 5:
+                        dayOfWeekName = "Fredag";
+                        break;
+                    case 6:
+                        dayOfWeekName = "Lördag";
+                        break;
+                    }
+
+                    clockText.text = ("00" + hours).slice(-2) + ":" + ("00" + minutes).slice(-2) // + ":" + ("00" + seconds).slice(-2);
+                    dateText.text = dayOfWeekName + " " + year + "-" + ("00" + (month+1)).slice(-2) + "-" + ("00" + day).slice(-2);
                 }
             }
 
@@ -140,7 +177,7 @@ Window {
                 anchors.left: dateText.left
                 anchors.bottom: dateText.top
 
-                text: "16:55"
+                text: "12:34"
 
                 color: "white"
                 font.pixelSize: 100
@@ -257,4 +294,6 @@ Window {
             }
         }
     }
+
+    Component.onCompleted: root.showFullScreen()
 }
