@@ -289,7 +289,7 @@ Window {
                     Image {
                         anchors.centerIn: parent
                         visible: type != "disabled"
-                        source: name + "png"
+                        source: "images/" + name + ".png"
                     }
 
                     MouseArea {
@@ -312,14 +312,14 @@ Window {
 
                 model: ListModel {
                     ListElement {
-                        name: "fonsterlampor-on"
+                        name: "fonsterlampa-on"
                         type: "request"
                         entity: "switch.fonsterlampor_vardagsrum"
                         service: "switch/turn_on"
                     }
 
                     ListElement {
-                        name: "rislampan-on"
+                        name: "rislampa-on"
                         type: "request"
                         entity: "switch.rislampan"
                         service: "switch/turn_on"
@@ -337,14 +337,14 @@ Window {
                     }
 
                     ListElement {
-                        name: "fonsterlampor-off"
+                        name: "fonsterlampa-off"
                         type: "request"
                         entity: "switch.fonsterlampor_vardagsrum"
                         service: "switch/turn_off"
                     }
 
                     ListElement {
-                        name: "rislampan-off"
+                        name: "rislampa-off"
                         type: "request"
                         entity: "switch.rislampan"
                         service: "switch/turn_off"
