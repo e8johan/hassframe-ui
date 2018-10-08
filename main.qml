@@ -20,7 +20,6 @@
 
 import QtQuick 2.7
 import QtQuick.Window 2.0
-import QtQuick.XmlListModel 2.0
 import Qt.labs.folderlistmodel 2.2
 
 Window {
@@ -231,6 +230,7 @@ Window {
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: "white"
                             font.pixelSize: 16
+                            font.bold: true
                             text: {
                                 switch (period) {
                                 case 0:
@@ -257,6 +257,7 @@ Window {
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: "white"
                             font.pixelSize: 16
+                            font.bold: true
                             text: precipitation + "mm"
                         }
                         Text {
@@ -268,60 +269,13 @@ Window {
                         }
                     }
 
-                    model: ListModel {
-                        id: weatherModel
-                    }
+                    model: weatherModel.model
                 }
+            }
 
-                Timer {
-                    interval: 3600000
-                    running: true
-                    repeat: true
-                    onTriggered: {
-                        xmlWeatherModel.reload();
-                    }
-                }
-
-                XmlListModel {
-                    id: xmlWeatherModel
-
-                    query: "/weatherdata/forecast/tabular/time"
-
-                    source: "https://www.yr.no/place/Sweden/V%C3%A4stra_G%C3%B6taland/Alings%C3%A5s/forecast.xml"
-
-                    XmlRole { name: "period"; query: "string(@period)" }
-                    XmlRole { name: "symbol"; query: "symbol/string(@number)"; }
-                    XmlRole { name: "temperature"; query: "temperature/string(@value)"; }
-                    XmlRole { name: "precipitation"; query: "precipitation/string(@value)"; }
-
-                    onStatusChanged: {
-                        if (status === XmlListModel.Ready)
-                        {
-                            for(var i = 0; i< 6 && i < count; ++i)
-                            {
-                                var symbol = get(i).symbol;
-                                var period = parseInt(get(i).period);
-                                var is_night = 0;
-
-                                if (period === 3 || period === 0)
-                                    is_night = 1;
-
-                                weatherModel.set(i, {
-                                    "period":period,
-                                    "symbol":symbol,
-                                    "symbolSource":"https://api.met.no/weatherapi/weathericon/1.1/?symbol=" + symbol + "&is_night=" + is_night + "&content_type=image/png",
-                                    "temperature":get(i).temperature,
-                                    "precipitation":get(i).precipitation
-                                    });
-                            }
-                        }
-                        else if (status === XmlListModel.Error)
-                        {
-                            console.warn("Weather error")
-                            console.warn(errorString());
-                        }
-                    }
-                }
+            YrWeatherModel {
+                id: weatherModel
+                place: "Sweden/V%C3%A4stra_G%C3%B6taland/Alings%C3%A5s"
             }
 
             Text {
@@ -329,9 +283,10 @@ Window {
                 anchors.right: parent.right
                 anchors.bottomMargin: 5
                 anchors.rightMargin: 40
-                text: "Data from MET Norway"
+                text: weatherModel.dataSourceNotice
                 color: "white"
                 font.pixelSize: 16
+                font.italic: true
             }
         }
     }

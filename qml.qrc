@@ -9,5 +9,6 @@
         <file>images/rislampa-on.png</file>
         <file>images/disco-on.png</file>
         <file>images/disco-off.png</file>
+        <file>YrWeatherModel.qml</file>
     </qresource>
 </RCC>
