@@ -64,6 +64,17 @@ Item {
         }
     }
 
+    // Retry every five minutes if we get an error
+    Timer {
+        id: errorRetryTimer
+
+        interval: 300000
+        repeat: false
+        onTriggered: {
+            _innerModel.reload();
+        }
+    }
+
     XmlListModel {
         id: _innerModel
 
@@ -99,6 +110,8 @@ Item {
             }
             else if (status === XmlListModel.Error)
             {
+                weatherModel.clear();
+                errorRetryTimer.restart();
                 console.warn("Weather error")
                 console.warn(errorString());
             }
