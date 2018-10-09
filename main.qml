@@ -138,7 +138,9 @@ Window {
             source: "images/lisa.jpg"
         }
 
-        Item { // Overlay
+        Item {
+            id: overlay
+
             anchors.fill: parent
 
             z: 2
@@ -398,6 +400,10 @@ Window {
                                 http.setRequestHeader('Content-Type', 'application/json');
                                 http.send(params);
                             }
+                            else if (type === "action")
+                            {
+                                action();
+                            }
                         }
                     }
                 }
@@ -425,7 +431,9 @@ Window {
                     }
 
                     ListElement {
-                        type: "disabled"
+                        name: "toggle-overlay"
+                        type: "action"
+                        action: function() { overlay.visible = !overlay.visible; }
                     }
 
                     ListElement {

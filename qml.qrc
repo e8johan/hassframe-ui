@@ -10,5 +10,6 @@
         <file>images/disco-on.png</file>
         <file>images/disco-off.png</file>
         <file>YrWeatherModel.qml</file>
+        <file>images/toggle-overlay.png</file>
     </qresource>
 </RCC>
