@@ -383,7 +383,7 @@ Window {
                     Image {
                         anchors.centerIn: parent
                         visible: type != "disabled"
-                        source: "images/" + name + ".png"
+                        source: (type != "disabled")?("images/" + name + ".png"):""
                     }
 
                     MouseArea {
