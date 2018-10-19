@@ -11,5 +11,6 @@
         <file>images/disco-off.png</file>
         <file>YrWeatherModel.qml</file>
         <file>images/toggle-overlay.png</file>
+        <file>BusStopModel.qml</file>
     </qresource>
 </RCC>

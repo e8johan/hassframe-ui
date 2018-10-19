@@ -145,6 +145,49 @@ Window {
 
             z: 2
 
+            Column {
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.rightMargin: 40
+                anchors.topMargin: 40
+
+                Repeater {
+                    model: busStopModel.model
+                    delegate: Item {
+                        width: 120;
+                        height: 30;
+
+                        Text {
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.left: parent.left
+
+                            text: timeString.substring(0, 5)
+
+                            color: "white"
+                            font.pixelSize: 16
+                            font.bold: true
+                        }
+
+                        Text {
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.right: parent.right
+                            width: 40
+
+                            horizontalAlignment: Text.AlignHCenter
+                            text: transportNumber
+
+                            color: "white"
+                            font.pixelSize: 16
+                            font.bold: true
+                        }
+                    }
+                }
+            }
+
+            BusStopModel {
+                id: busStopModel
+            }
+
             Timer {
                 interval: 1000
                 repeat: true
