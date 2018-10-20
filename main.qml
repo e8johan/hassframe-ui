@@ -154,12 +154,12 @@ Window {
                 Repeater {
                     model: busStopModel.model
                     delegate: Item {
-                        width: 120;
+                        width: 110;
                         height: 30;
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
-                            anchors.left: parent.left
+                            anchors.right: parent.right
 
                             text: timeString.substring(0, 5)
 
@@ -168,17 +168,25 @@ Window {
                             font.bold: true
                         }
 
-                        Text {
+                        Rectangle {
                             anchors.verticalCenter: parent.verticalCenter
-                            anchors.right: parent.right
+                            anchors.left: parent.left
                             width: 40
 
-                            horizontalAlignment: Text.AlignHCenter
-                            text: transportNumber
+                            height: 20
+                            radius: height/2
 
-                            color: "white"
-                            font.pixelSize: 16
-                            font.bold: true
+                            color: "#009ddb"
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: transportNumber
+
+                                color: "white"
+                                font.pixelSize: 16
+                                font.bold: true
+                            }
                         }
                     }
                 }
