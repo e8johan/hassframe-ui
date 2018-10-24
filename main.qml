@@ -145,6 +145,71 @@ Window {
 
             z: 2
 
+            ListView {
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.topMargin: 40
+                anchors.leftMargin: 40
+                anchors.bottom: parent.bottom
+
+                width: 300
+
+                model: icalModel.model
+
+                section.property: "dateString"
+                section.delegate: Item {
+                    width: parent.width
+                    height: 30
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: section
+
+                        color: "white"
+                        font.pixelSize: 16
+                        font.bold: true
+                    }
+                    Rectangle {
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+                        height: 2
+
+                        color: "white"
+                    }
+                }
+                delegate: Item {
+                    width: parent.width
+                    height: 25
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: timeString
+
+                        color: "white"
+                        font.pixelSize: 16
+                        font.bold: true
+                    }
+
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: 70
+                        width: parent.width-x
+
+                        text: eventSummary
+                        elide: Text.ElideRight
+
+                        color: "white"
+                        font.pixelSize: 16
+                        font.bold: true
+                    }
+                }
+            }
+
+            IcalModel {
+                id: icalModel
+            }
+
             Column {
                 anchors.top: parent.top
                 anchors.right: parent.right

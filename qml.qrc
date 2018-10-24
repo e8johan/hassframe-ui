@@ -12,5 +12,6 @@
         <file>YrWeatherModel.qml</file>
         <file>images/toggle-overlay.png</file>
         <file>BusStopModel.qml</file>
+        <file>IcalModel.qml</file>
     </qresource>
 </RCC>
