@@ -148,8 +148,8 @@ Window {
             ListView {
                 anchors.top: parent.top
                 anchors.left: parent.left
-                anchors.topMargin: 40
-                anchors.leftMargin: 40
+                anchors.topMargin: 20
+                anchors.leftMargin: 20
                 anchors.bottom: parent.bottom
 
                 width: 300
@@ -159,14 +159,14 @@ Window {
                 section.property: "dateString"
                 section.delegate: Item {
                     width: parent.width
-                    height: 30
+                    height: 20
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
 
                         text: section
 
                         color: "white"
-                        font.pixelSize: 16
+                        font.pixelSize: 12
                         font.bold: true
                     }
                     Rectangle {
@@ -180,27 +180,27 @@ Window {
                 }
                 delegate: Item {
                     width: parent.width
-                    height: 25
+                    height: 16
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
 
                         text: timeString
 
                         color: "white"
-                        font.pixelSize: 16
+                        font.pixelSize: 12
                         font.bold: true
                     }
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        x: 70
+                        x: 50
                         width: parent.width-x
 
                         text: eventSummary
                         elide: Text.ElideRight
 
                         color: "white"
-                        font.pixelSize: 16
+                        font.pixelSize: 12
                         font.bold: true
                     }
                 }
@@ -213,14 +213,14 @@ Window {
             Column {
                 anchors.top: parent.top
                 anchors.right: parent.right
-                anchors.rightMargin: 40
-                anchors.topMargin: 40
+                anchors.rightMargin: 20
+                anchors.topMargin: 20
 
                 Repeater {
                     model: busStopModel.model
                     delegate: Item {
-                        width: 110;
-                        height: 30;
+                        width: 100;
+                        height: 20;
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
@@ -229,7 +229,7 @@ Window {
                             text: timeString.substring(0, 5)
 
                             color: "white"
-                            font.pixelSize: 16
+                            font.pixelSize: 12
                             font.bold: true
                         }
 
@@ -238,7 +238,7 @@ Window {
                             anchors.left: parent.left
                             width: 40
 
-                            height: 20
+                            height: 16
                             radius: height/2
 
                             color: "#009ddb"
@@ -249,7 +249,7 @@ Window {
                                 text: transportNumber
 
                                 color: "white"
-                                font.pixelSize: 16
+                                font.pixelSize: 12
                                 font.bold: true
                             }
                         }
@@ -318,7 +318,7 @@ Window {
                 text: "12:34"
 
                 color: "white"
-                font.pixelSize: 100
+                font.pixelSize: 80
             }
 
             Text {
@@ -326,28 +326,28 @@ Window {
 
                 anchors.left: parent.left
                 anchors.bottom: parent.bottom
-                anchors.leftMargin: 40
-                anchors.bottomMargin: 40
+                anchors.leftMargin: 20
+                anchors.bottomMargin: 20
 
                 text: "Måndag 2018-10-05"
 
                 color: "white"
-                font.pixelSize: 30
+                font.pixelSize: 20
             }
 
             Row {
                 anchors.bottom: dateText.bottom
                 anchors.right: parent.right
-                anchors.rightMargin: 40
+                anchors.rightMargin: 20
 
-                spacing: 20
+                spacing: 10
                 Repeater {
                     delegate: Column {
                         spacing: 2
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: "white"
-                            font.pixelSize: 16
+                            font.pixelSize: 12
                             font.bold: true
                             text: {
                                 switch (period) {
@@ -374,14 +374,14 @@ Window {
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: "white"
-                            font.pixelSize: 16
+                            font.pixelSize: 12
                             font.bold: true
                             text: precipitation + "mm"
                         }
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: "white"
-                            font.pixelSize: 16
+                            font.pixelSize: 12
                             font.bold: true
                             text: temperature + "°C"
                         }
@@ -400,10 +400,10 @@ Window {
                 anchors.bottom: parent.bottom
                 anchors.right: parent.right
                 anchors.bottomMargin: 5
-                anchors.rightMargin: 40
+                anchors.rightMargin: 20
                 text: weatherModel.dataSourceNotice
                 color: "white"
-                font.pixelSize: 16
+                font.pixelSize: 12
                 font.italic: true
             }
         }
