@@ -41,6 +41,8 @@ Item {
         if (http.readyState === 4)
         {
             if (http.status === 200) {
+                _innerModel.clear();
+
                 var lines = http.responseText.match(/[^\r\n]+/g);
 
                 var inEvent = false;
