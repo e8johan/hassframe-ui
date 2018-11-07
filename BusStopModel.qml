@@ -12,7 +12,7 @@ Item {
         id: _internalModel
     }
 
-    function _updateBusModel(http)
+    function _updateBusModel(http, requestKey)
     {
         if (http.readyState === 4)
         {
@@ -20,15 +20,9 @@ Item {
                 var json = JSON.parse(http.responseText);
                 var departureList = json.Departure;
 
-                // Determine which bus numbers appear in the results
-                var busNumbers = [];
-                for (var i=0; i<departureList.length; ++i)
-                    if (busNumbers.indexOf(departureList[i].transportNumber) === -1)
-                        busNumbers.push(departureList[i].transportNumber);
-
                 // Remove the relevant busses from the intermediate model
                 for (var i=0; i<_internalModel.count; ++i) {
-                    if (busNumbers.indexOf(_internalModel.get(i).transportNumber) > -1) {
+                    if (_internalModel.get(i).requestKey === requestKey) {
                         _internalModel.remove(i);
                         i=-1; // The for-loop will ++i
                     }
@@ -46,7 +40,8 @@ Item {
                     _internalModel.insert(j, { "transportNumber": departureList[i].transportNumber,
                                                "date": Date.parse(departureList[i].date + " " + departureList[i].time),
                                                "timeString": departureList[i].time,
-                                               "dateString": departureList[i].date } );
+                                               "dateString": departureList[i].date,
+                                               "requestKey": requestKey } );
                 }
 
                 // Update the final model with the top items
@@ -74,14 +69,14 @@ Item {
             var http;
             http = new XMLHttpRequest();
             http.onreadystatechange = function() {
-                _updateBusModel(http);
+                _updateBusModel(http, "740061017");
             };
             http.open('GET', url1, true);
             http.send('');
 
             var http2 = new XMLHttpRequest();
             http2.onreadystatechange = function() {
-                _updateBusModel(http2);
+                _updateBusModel(http2, "740060956");
             };
             http2.open('GET', url2, true);
             http2.send('');
