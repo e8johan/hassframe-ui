@@ -32,8 +32,14 @@ Item {
             ++i;
 
         var d = new Date(_eventDate);
+
+        if (_eventTime.length > 0) {
+            var utcD = new Date();
+            utcD.setUTCHours(_eventTime.substr(0,2));
+            utcD.setUTCMinutes(_eventTime.substr(3, 2));
+            _eventTime = ("00"+utcD.getHours()).substr(-2) + ":" + ("00"+utcD.getMinutes()).substr(-2)
+        }
         _innerModel.insert(i, { eventDate: _eventDate, dateString: _dateString(d), timeString: _eventTime, eventSummary: _eventSummary });
-        console.log(_dateString(d) + ": " + _eventSummary);
     }
 
     function _updateModel(http)
