@@ -514,6 +514,7 @@ Window {
 
                                 http.open('POST', url, true);
                                 http.setRequestHeader('Content-Type', 'application/json');
+                                http.setRequestHeader('Authorization', 'Bearer ' + HASS_AUTH_KEY);
                                 http.send(params);
                             }
                             else if (type === "action")

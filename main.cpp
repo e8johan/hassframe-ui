@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("DEPARTURE_KEY", QString::fromLocal8Bit(qgetenv("DEPARTURE_KEY")));
     engine.rootContext()->setContextProperty("ICAL_URL", QString::fromLocal8Bit(qgetenv("ICAL_URL")));
+    engine.rootContext()->setContextProperty("HASS_AUTH_KEY", QString::fromLocal8Bit(qgetenv("HASS_AUTH_KEY")));
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
