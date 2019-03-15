@@ -543,7 +543,7 @@ Window {
                     ListElement {
                         name: "disco-on"
                         type: "request"
-                        entity: "switch.fonsterlampor_koket"
+                        entity: "switch.discolampan"
                         service: "switch/turn_on"
                     }
 
@@ -570,7 +570,7 @@ Window {
                     ListElement {
                         name: "disco-off"
                         type: "request"
-                        entity: "switch.fonsterlampor_koket"
+                        entity: "switch.discolampan"
                         service: "switch/turn_off"
                     }
 
