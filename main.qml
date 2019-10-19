@@ -150,7 +150,9 @@ Window {
                 anchors.left: parent.left
                 anchors.topMargin: 20
                 anchors.leftMargin: 20
-                anchors.bottom: parent.bottom
+                anchors.bottom: clockText.top
+
+                enabled: false
 
                 width: 300
 
@@ -262,6 +264,32 @@ Window {
             }
 
             Timer {
+                interval: 5000
+                repeat: true
+                running: true
+                onTriggered: {
+                    var url = 'http://192.168.1.202:8123/api/states/sensor.outdoors_temperature'
+                    var http = new XMLHttpRequest();
+                    http.onreadystatechange = function() {
+                        if (http.readyState === 4)
+                        {
+                            if (http.status === 200) {
+                                var json = JSON.parse(http.responseText);
+                                console.log("TEMP: " + json.state);
+                                temperatureText.text = json.state+"°C"
+                            }
+                            else
+                                console.log("Issue with temperature, " + http.readyState);
+                        }
+                    };
+                    http.open('GET', url, true);
+                    http.setRequestHeader('Content-Type', 'application/json');
+                    http.setRequestHeader('Authorization', 'Bearer ' + HASS_AUTH_KEY);
+                    http.send("");
+                }
+            }
+
+            Timer {
                 interval: 1000
                 repeat: true
                 running: true
@@ -313,7 +341,7 @@ Window {
                 id: clockText
 
                 anchors.left: dateText.left
-                anchors.bottom: dateText.top
+                anchors.baseline: temperatureText.baseline
 
                 text: "12:34"
 
@@ -325,9 +353,8 @@ Window {
                 id: dateText
 
                 anchors.left: parent.left
-                anchors.bottom: parent.bottom
+                anchors.top: clockText.bottom
                 anchors.leftMargin: 20
-                anchors.bottomMargin: 20
 
                 text: "Måndag 2018-10-05"
 
@@ -335,10 +362,27 @@ Window {
                 font.pixelSize: 20
             }
 
+            Text {
+                id: temperatureText
+
+                anchors.bottom: weatherRow.top
+                anchors.right: parent.right
+                anchors.bottomMargin: 20
+                anchors.rightMargin: 20
+
+                text: "##°C"
+
+                color: "white"
+                font.pixelSize: 80
+            }
+
             Row {
-                anchors.bottom: dateText.bottom
+                id: weatherRow
+
+                anchors.bottom: parent.bottom
                 anchors.right: parent.right
                 anchors.rightMargin: 20
+                anchors.bottomMargin: 20
 
                 spacing: 10
                 Repeater {
@@ -579,7 +623,6 @@ Window {
                     }
                 }
             }
-
         }
     }
 
