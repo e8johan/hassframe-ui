@@ -264,9 +264,10 @@ Window {
             }
 
             Timer {
-                interval: 5000
+                interval: 60000
                 repeat: true
                 running: true
+                triggeredOnStart: true
                 onTriggered: {
                     var url = 'http://192.168.1.202:8123/api/states/sensor.outdoors_temperature'
                     var http = new XMLHttpRequest();
@@ -275,7 +276,6 @@ Window {
                         {
                             if (http.status === 200) {
                                 var json = JSON.parse(http.responseText);
-                                console.log("TEMP: " + json.state);
                                 temperatureText.text = json.state+"°C"
                             }
                             else
@@ -626,7 +626,12 @@ Window {
         }
     }
 
-    Component.onCompleted: root.showFullScreen()
+    Component.onCompleted: {
+        if (HASS_DEBUG == "yes")
+            root.show();
+        else
+            root.showFullScreen();
+    }
 
     MouseArea {
         anchors.fill: parent
