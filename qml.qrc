@@ -17,5 +17,6 @@
         <file>images/light_off.png</file>
         <file>images/light_on.png</file>
         <file>DrawerContents.qml</file>
+        <file>SlideshowBackground.qml</file>
     </qresource>
 </RCC>
