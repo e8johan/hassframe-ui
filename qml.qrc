@@ -13,5 +13,9 @@
         <file>images/toggle-overlay.png</file>
         <file>BusStopModel.qml</file>
         <file>IcalModel.qml</file>
+        <file>HassButton.qml</file>
+        <file>images/light_off.png</file>
+        <file>images/light_on.png</file>
+        <file>DrawerContents.qml</file>
     </qresource>
 </RCC>
