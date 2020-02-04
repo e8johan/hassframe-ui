@@ -8,13 +8,6 @@ Grid {
     rightPadding: 40
     bottomPadding: 40
 
-    HassButton {
-        x: 10
-        y: 10
-
-        entity: "switch.vitrinskap"
-    }
-
     Repeater {
         delegate:
         Rectangle {
