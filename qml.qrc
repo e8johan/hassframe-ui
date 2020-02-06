@@ -3,14 +3,7 @@
         <file>main.qml</file>
         <file>images/erik.jpg</file>
         <file>images/lisa.jpg</file>
-        <file>images/fonsterlampa-off.png</file>
-        <file>images/fonsterlampa-on.png</file>
-        <file>images/rislampa-off.png</file>
-        <file>images/rislampa-on.png</file>
-        <file>images/disco-on.png</file>
-        <file>images/disco-off.png</file>
         <file>YrWeatherModel.qml</file>
-        <file>images/toggle-overlay.png</file>
         <file>BusStopModel.qml</file>
         <file>IcalModel.qml</file>
         <file>HassButton.qml</file>
