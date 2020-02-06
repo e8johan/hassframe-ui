@@ -40,14 +40,11 @@ Item {
 
     function _setState(newState)
     {
-        console.log("Setting new state: " + newState)
         var service = entity.split(".")[0] + "/turn_" + newState
 
         var url = 'http://192.168.1.202:8123/api/services/' + service
         var params = '{"entity_id": "' + entity + '"}'
         var http = new XMLHttpRequest();
-
-        console.log(url)
 
         http.open('POST', url, true);
         http.setRequestHeader('Content-Type', 'application/json');
@@ -76,7 +73,6 @@ Item {
         {
             if (http.status === 200) {
                 var json = JSON.parse(http.responseText);
-                console.log(json.state)
                 _state = json.state
             }
             else
