@@ -279,11 +279,32 @@ Window {
             root.show();
         else
             root.showFullScreen();
+
+        backlight.enabled = true;
+    }
+
+    Timer {
+        id: backlightTimer
+        interval: 5000 // 60000*2 // two minutes
+        running: true
+	repeat: false
+        onTriggered: backlight.enabled = false;
     }
 
     MouseArea {
         anchors.fill: parent
-        enabled: false
+        enabled: true
         cursorShape: Qt.BlankCursor
+	propagateComposedEvents: true
+	z: 100
+
+	onClicked: {
+            backlightTimer.restart();
+            if (backlight.enabled)
+                mouse.accepted = false;
+            else
+                mouse.accepted = true;
+            backlight.enabled = true;
+	}
     }
 }
