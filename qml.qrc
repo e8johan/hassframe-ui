@@ -16,5 +16,11 @@
         <file>images/heat_on.png</file>
         <file>images/snow_off.png</file>
         <file>images/snow_on.png</file>
+        <file>Button.qml</file>
+        <file>images/buttonbg.png</file>
+        <file>images/calendar.png</file>
+        <file>CalendarOverlay.qml</file>
+        <file>images/house.png</file>
+        <file>HouseControlOverlay.qml</file>
     </qresource>
 </RCC>
