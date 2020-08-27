@@ -1,0 +1,11 @@
+[Service]
+Type=simple
+ExecStart=/home/pi/hass-clock/hassframe-ui/environment.sh
+WorkingDirectory=/home/pi/hass-clock/hassframe-ui/
+
+[Unit]
+Wants=network-online.target
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
