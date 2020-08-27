@@ -38,6 +38,8 @@ Item {
 
         z: 2
 
+        iconSource: "images/back.png"
+
         onClicked: {
             if (houseMap.state == "zoomedout")
                 root.hide();
@@ -57,52 +59,35 @@ Item {
         sourceSize.width: 300
         sourceSize.height: 220
 
-        MouseArea {
-            x: 0
-            y: 0
-            width: 100
-            height: 220
-
-            onClicked: houseMap.state = "livingroom"
+        HassButton {
+            x:13
+            y:13
+            entity: "switch.fonsterlampor_vardagsrum"
         }
 
-        MouseArea {
-            x: 100
-            y: 0
-            width: 100
-            height: 220
-
-            onClicked: houseMap.state = "disco"
+        HassButton {
+            x:13
+            y:98
+            entity: "switch.rislampan"
         }
 
-        MouseArea {
-            x: 200
-            y: 0
-            width: 100
-            height: 120
-
-            onClicked: houseMap.state = "bedroom"
+        HassButton {
+            x:104
+            y:80
+            entity: "switch.discolampan"
         }
 
-        state: "zoomedout"
+        HassButton {
+            x:236
+            y:10
+            entity: "switch.fonsterlampan_sovrum"
+        }
 
-        states: [
-            State {
-                name: "zoomedout"
-                PropertyChanges { target: houseMap; x: 10; y: 20; sourceSize.width: 300; sourceSize.height: 220; }
-            },
-            State {
-                name: "bedroom"
-                PropertyChanges { target: houseMap; x: -250; y: 20; sourceSize.width: 600; sourceSize.height: 440; }
-            },
-            State {
-                name: "livingroom"
-                PropertyChanges { target: houseMap; x: 50; y: 20; sourceSize.width: 600; sourceSize.height: 440; }
-            },
-            State {
-                name: "disco"
-                PropertyChanges { target: houseMap; x: -100; y: -100; sourceSize.width: 600; sourceSize.height: 440; }
-            }
-        ]
+        HassButton {
+            x:236
+            y:86
+            entity: "switch.ac_sovrum"
+            imagePrefix: "snow_"
+        }
     }
 }

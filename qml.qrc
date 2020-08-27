@@ -22,5 +22,6 @@
         <file>CalendarOverlay.qml</file>
         <file>images/house.png</file>
         <file>HouseControlOverlay.qml</file>
+        <file>images/back.png</file>
     </qresource>
 </RCC>
