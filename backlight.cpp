@@ -15,11 +15,17 @@ void Backlight::setEnabled(bool e)
 		return;
 
 	FILE *f = fopen("/sys/class/gpio/gpio18/value", "w");
-	if (e)
-		fprintf(f, "1\n");
-	else
-		fprintf(f, "0\n");
-	fclose(f);
+    if (f) {
+        if (e)
+            fprintf(f, "1\n");
+        else
+            fprintf(f, "0\n");
+        fclose(f);
+    }
+    else
+    {
+        qDebug("Failed to set backlight to %d", e);
+    }
 
 	m_enabled = e;
 	emit enabledChanged();
