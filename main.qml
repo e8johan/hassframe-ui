@@ -285,7 +285,7 @@ Window {
 
     Timer {
         id: backlightTimer
-        interval: 5000 // 60000*2 // two minutes
+        interval: 30000
         running: true
 	repeat: false
         onTriggered: backlight.enabled = false;
