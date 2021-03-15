@@ -83,7 +83,7 @@ Item {
         source: (place.length === 0)?"":("https://www.yr.no/place/" + root.place + "/forecast.xml")
 
         XmlRole { name: "period"; query: "string(@period)" }
-        XmlRole { name: "symbol"; query: "symbol/string(@number)"; }
+        XmlRole { name: "symbol"; query: "symbol/string(@code)"; }
         XmlRole { name: "temperature"; query: "temperature/string(@value)"; }
         XmlRole { name: "precipitation"; query: "precipitation/string(@value)"; }
 
@@ -94,15 +94,11 @@ Item {
                 {
                     var symbol = get(i).symbol;
                     var period = parseInt(get(i).period);
-                    var is_night = 0;
-
-                    if (period === 3 || period === 0)
-                        is_night = 1;
 
                     weatherModel.set(i, {
                         "period":period,
                         "symbol":symbol,
-                        "symbolSource":"https://api.met.no/weatherapi/weathericon/1.1/?symbol=" + symbol + "&is_night=" + is_night + "&content_type=image/png",
+                        "symbolSource":"images/weather/" + symbol + ".png",
                         "temperature":get(i).temperature,
                         "precipitation":get(i).precipitation
                         });
